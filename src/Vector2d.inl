@@ -8,52 +8,62 @@
 #include <sstream>
 
 
-inline Vector2d::Vector2d(const Vector2d &vec) {
+template<typename T>
+inline Vector2d<T>::Vector2d(const Vector2d &vec) {
     x=vec.x;
     y=vec.y;
 }
 
-inline bool Vector2d::operator==(const Vector2d &vec) {
+template<typename T>
+inline bool Vector2d<T>::operator==(const Vector2d &vec) {
     return (x == vec.x && y == vec.y);
 }
 
-inline Vector2d Vector2d::operator+(const Vector2d &vec) {
+template<typename T>
+inline Vector2d<T> Vector2d<T>::operator+(const Vector2d &vec) {
     return Vector2d(x+vec.x, y+vec.y);;
 }
 
-inline Vector2d& Vector2d::operator+=(const Vector2d &vec) {
+template<typename T>
+inline Vector2d<T>& Vector2d<T>::operator+=(const Vector2d &vec) {
     x += vec.x;
     y += vec.y;
     return *this;
 }
 
-inline Vector2d Vector2d::operator-(const Vector2d &vec) {
+template<typename T>
+inline Vector2d<T> Vector2d<T>::operator-(const Vector2d &vec) {
     return Vector2d(x-vec.x, y-vec.y);;
 }
 
-inline Vector2d& Vector2d::operator-=(const Vector2d &vec) {
+template<typename T>
+inline Vector2d<T>& Vector2d<T>::operator-=(const Vector2d &vec) {
     x -= vec.x;
     y -= vec.y;
     return *this;
 }
 
-inline Vector2d Vector2d::operator*(float val) {
+template<typename T>
+inline Vector2d<T> Vector2d<T>::operator*(T val) {
     return Vector2d(x*val, y*val);;
 }
 
-inline Vector2d& Vector2d::operator*=(float val) {
+template<typename T>
+inline Vector2d<T>& Vector2d<T>::operator*=(T val) {
     x *= val;
     y *= val;
     return *this;
 }
 
-inline Vector2d Vector2d::operator/(float val) {
+template<typename T>
+inline Vector2d<T> Vector2d<T>::operator/(T val) {
     if (val == 0.0)
         throw std::exception();
     return Vector2d(x/val, y/val);
 }
 
-inline Vector2d& Vector2d::operator/=(float val) {
+template<typename T>
+inline Vector2d<T>& Vector2d<T>::operator/=(T val) {
     if (val == 0.0)
         throw std::exception();
     x /= val;
@@ -61,47 +71,57 @@ inline Vector2d& Vector2d::operator/=(float val) {
     return *this;
 }
 
-inline float Vector2d::dot(const Vector2d &vec) {
+template<typename T>
+inline T Vector2d<T>::dot(const Vector2d &vec) {
     return x * vec.x + y * vec.y;
 }
 
-inline float Vector2d::operator*(const Vector2d &vec) {
+template<typename T>
+inline T Vector2d<T>::operator*(const Vector2d &vec) {
     return dot(vec);
 }
 
-inline float Vector2d::mag() {
+template<typename T>
+inline T Vector2d<T>::mag() {
     return std::sqrt(square());
 }
 
-inline Vector2d& Vector2d::norm() {
+template<typename T>
+inline Vector2d<T>& Vector2d<T>::norm() {
     if (mag() == 0.0)
         throw std::exception();
     *this/=mag();
     return *this;
 }
 
-inline float Vector2d::square() {
+template<typename T>
+inline T Vector2d<T>::square() {
     return x * x + y * y;
 }
 
-inline float Vector2d::dist(const Vector2d &o) {
+template<typename T>
+inline T Vector2d<T>::dist(const Vector2d &o) {
     Vector2d d = *this-o;
     return d.mag();
 }
 
-inline float Vector2d::getX() const {
+template<typename T>
+inline T Vector2d<T>::getX() const {
     return x;
 }
 
-inline float Vector2d::getY() const {
+template<typename T>
+inline T Vector2d<T>::getY() const {
     return y;
 }
 
-inline void Vector2d::print() {
+template<typename T>
+inline void Vector2d<T>::print() {
     std::cout << "Vector2d[" << x << "," << y << "]";
 }
 
-inline std::string Vector2d::toString() {
+template<typename T>
+inline std::string Vector2d<T>::toString() {
     std::ostringstream stream;
     stream << "[" << x << "," << y << "]";
     return stream.str();

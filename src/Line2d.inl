@@ -5,36 +5,43 @@
 #include <cmath>
 #include "Line2d.h"
 
-inline Vector2d Line2d::operator~() {
-    return Vector2d{y1 - y2, x2 - x1};
+template<typename T>
+inline Vector2d<T> Line2d<T>::operator~() {
+    return Vector2d<T>{y1 - y2, x2 - x1};
 }
 
-inline float Line2d::dist_sq(const Vector2d &point) {
+template<typename T>
+inline T Line2d<T>::dist_sq(const Vector2d<T> &point) {
     return dist_sq(point.getX(), point.getY());
 }
 
-inline float Line2d::dist_sq(float px, float py) {
-    Vector2d AB{px - x1, py - y1}; // point to end of line vector
-    Vector2d EF{y1 - y2, x2 - x1}; // orthogonal vector to line
+template<typename T>
+inline T Line2d<T>::dist_sq(T px, T py) {
+    Vector2d<T> AB{px - x1, py - y1}; // point to end of line vector
+    Vector2d<T> EF{y1 - y2, x2 - x1}; // orthogonal vector to line
 
-    float dot = AB * EF;
-    float len_sq = EF.square();
+    T dot = AB * EF;
+    T len_sq = EF.square();
     return dot * dot / len_sq;
 }
 
-inline float Line2d::dist(const Vector2d &point) {
+template<typename T>
+inline T Line2d<T>::dist(const Vector2d<T> &point) {
     return std::sqrt(dist_sq(point));
 }
 
-inline float Line2d::dist(float px, float py) {
+template<typename T>
+inline T Line2d<T>::dist(T px, T py) {
     return std::sqrt(dist_sq(px, py));
 }
 
-inline float Line2d::relativeCCW(const Vector2d &point) {
+template<typename T>
+inline T Line2d<T>::relativeCCW(const Vector2d<T> &point) {
     return relativeCCW(point.getX(), point.getY());
 }
 
-inline float Line2d::relativeCCW(float px, float py) {
+template<typename T>
+inline T Line2d<T>::relativeCCW(T px, T py) {
     if ((x1 == x2 && y1 == y2) || (x1 == px && y1 == py) || (x2 == px && y2 == py))
         return 0; // Coincident points.
     // Translate to the origin.

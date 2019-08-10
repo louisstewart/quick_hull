@@ -7,13 +7,15 @@
 
 #include <string>
 
+template<typename T>
 class Vector2d {
+    using value_type = T;
 private:
-    float x;
-    float y;
+    T x;
+    T y;
 
 public:
-    Vector2d(float a, float b): x(a), y(b) {}
+    Vector2d(T a, T b): x(a), y(b) {}
     ~Vector2d() = default;
 
     Vector2d(const Vector2d &vec); // Copy constructor
@@ -22,19 +24,19 @@ public:
     Vector2d& operator+=(const Vector2d&vec); // Add assign
     Vector2d operator-(const Vector2d&vec); // Add
     Vector2d& operator-=(const Vector2d&vec); // Add assign
-    Vector2d operator*(float val); // Add
-    Vector2d& operator*=(float val); // Add assign
-    Vector2d operator/(float val); // Add
-    Vector2d& operator/=(float val); // Add assign
+    Vector2d operator*(T val); // Add
+    Vector2d& operator*=(T val); // Add assign
+    Vector2d operator/(T val); // Add
+    Vector2d& operator/=(T val); // Add assign
     bool operator==(const Vector2d &vec);
-    float dot(const Vector2d&vec); // dot product
-    float operator*(const Vector2d& vec); // dot product
-    float mag();
+    T dot(const Vector2d &vec); // dot product
+    T operator*(const Vector2d &vec); // dot product
+    T mag();
     Vector2d& norm();
-    float square();
-    float dist(const Vector2d &o);
-    float getX() const;
-    float getY() const;
+    T square();
+    T dist(const Vector2d &o);
+    T getX() const;
+    T getY() const;
     void print(); // Show it
     std::string toString();
 };
