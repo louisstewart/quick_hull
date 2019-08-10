@@ -15,7 +15,7 @@ namespace details {
  * *************************************************************************/
 
     template<typename T>
-    inline Vector2d<T> &get_most_extreme(std::vector<Vector2d<T>> &vector, bool (*pFunction)(Vector2d<T>, Vector2d<T>)) {
+    Vector2d<T> &get_most_extreme(std::vector<Vector2d<T>> &vector, bool (*pFunction)(Vector2d<T>, Vector2d<T>)) {
         Vector2d<T> *a = &vector[0];
         for (int i = 1; i < vector.size(); ++i) {
             // Swap if comparison fails, e.g. if a.x < b.x and we want rightmost, then set a = b.
@@ -25,21 +25,21 @@ namespace details {
     }
 
     template<typename T>
-    inline Vector2d<T> &get_rightmost_point(std::vector<Vector2d<T>> &vector) {
-        if(vector.empty())
+    Vector2d<T> &get_rightmost_point(std::vector<Vector2d<T>> &vector) {
+        if (vector.empty())
             throw std::exception();
         return details::get_most_extreme(vector, [](Vector2d<T> l, Vector2d<T> r) { return l.getX() < r.getX(); });
     }
 
     template<typename T>
-    inline Vector2d<T> &get_leftmost_point(std::vector<Vector2d<T>> &vector) {
-        if(vector.empty())
+    Vector2d<T> &get_leftmost_point(std::vector<Vector2d<T>> &vector) {
+        if (vector.empty())
             throw std::exception();
         return details::get_most_extreme(vector, [](Vector2d<T> l, Vector2d<T> r) { return l.getX() > r.getX(); });
     }
 
     template<typename T>
-    inline Vector2d<T>& find_farthest(Vector2d<T> &left, Vector2d<T> &right, std::vector<Vector2d<T>> &vectors) {
+    Vector2d<T> &find_farthest(Vector2d<T> &left, Vector2d<T> &right, std::vector<Vector2d<T>> &vectors) {
         double max_d = 0.0;
         Line2d<T> l(left, right);
         Vector2d<T> *farthest = &vectors[0];
@@ -54,7 +54,7 @@ namespace details {
     }
 
     template<typename T>
-    inline std::vector<Vector2d<T>> get_points_ccw(Vector2d<T> &left, Vector2d<T> &right, std::vector<Vector2d<T>> &vectors) {
+    std::vector<Vector2d<T>> get_points_ccw(Vector2d<T> &left, Vector2d<T> &right, std::vector<Vector2d<T>> &vectors) {
         std::vector<Vector2d<T>> ccw; // Set of points counter clockwise to line between left-right.
         Line2d<T> line{left, right};
         for (Vector2d<T> &vec: vectors) {
@@ -64,7 +64,8 @@ namespace details {
     }
 
     template<typename T>
-    inline void findHull(std::vector<Vector2d<T>> &subset, Vector2d<T> &left, Vector2d<T> &right, std::vector<Vector2d<T>> &hull) {
+    void
+    findHull(std::vector<Vector2d<T>> &subset, Vector2d<T> &left, Vector2d<T> &right, std::vector<Vector2d<T>> &hull) {
         if (subset.empty()) return;
 
         Vector2d<T> &C = details::find_farthest(left, right, subset);
@@ -80,6 +81,7 @@ namespace details {
     }
 
 }
+
 /**
  * Calculate the convex hull around a set of points, using the QuickHull algorithm.
  * This algo runs in an average case O(Nlog(N)) time for a set of N points.
@@ -88,7 +90,7 @@ namespace details {
  * @return vector of points defining the convex hull around the input points
  */
 template<typename T>
-inline std::vector<Vector2d<T>> quick_hull(std::vector<Vector2d<T>> vecs) {
+std::vector<Vector2d<T>> quick_hull(std::vector<Vector2d<T>> vecs) {
     std::vector<Vector2d<T>> hull;
 
     auto left = details::get_leftmost_point(vecs);
