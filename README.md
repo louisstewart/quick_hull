@@ -1,6 +1,6 @@
 # QuickHull + Qt
 
-C++ implementation (QuickHull)[https://en.wikipedia.org/wiki/Quickhull] algorithm for finding the convex hull around a set of points in the 2d plane.
+C++ implementation [QuickHull](https://en.wikipedia.org/wiki/Quickhull) algorithm for finding the convex hull around a set of points in the 2d plane.
 There are Boost.Test tests available for the project (requires Boost) and a simple Qt GUI for creating a set of points and finding the hull.
 
 ## Build
