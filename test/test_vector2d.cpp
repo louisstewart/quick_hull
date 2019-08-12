@@ -6,51 +6,51 @@
 #define BOOST_TEST_MODULE QuickHull
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
+BOOST_AUTO_TEST_SUITE(TEST_SUITE_Vector2d)
 
     BOOST_AUTO_TEST_CASE(test_create) {
-        Vector2d v{1, 1};
+        Vector2d<float> v{1, 1};
 
         BOOST_CHECK_EQUAL(v.getX(), 1);
         BOOST_CHECK_EQUAL(v.getY(), 1);
     }
 
     BOOST_AUTO_TEST_CASE(test_create_float) {
-            Vector2d v{1.5, 1.1};
+            Vector2d<float> v{1.5, 1.1};
 
             BOOST_CHECK_CLOSE(v.getX(), 1.5, 0.0001);
             BOOST_CHECK_CLOSE(v.getY(), 1.1, 0.0001);
     }
 
     BOOST_AUTO_TEST_CASE(test_copy_constructor) {
-        Vector2d v{1.5, 1.1};
-        Vector2d v2{v};
+        Vector2d<float> v{1.5, 1.1};
+        Vector2d<float> v2{v};
 
         BOOST_CHECK_CLOSE(v2.getX(), 1.5, 0.0001);
         BOOST_CHECK_CLOSE(v2.getY(), 1.1, 0.0001);
     }
 
     BOOST_AUTO_TEST_CASE(test_copy_assign) {
-            Vector2d v{1.5, 1.1};
-            Vector2d v2 = v;
+            Vector2d<float> v{1.5, 1.1};
+            Vector2d<float> v2 = v;
 
             BOOST_CHECK_CLOSE(v2.getX(), 1.5, 0.0001);
             BOOST_CHECK_CLOSE(v2.getY(), 1.1, 0.0001);
     }
 
     BOOST_AUTO_TEST_CASE(test_add) {
-        Vector2d v{1.5, 1.1};
-        Vector2d v2 = v;
+        Vector2d<float> v{1.5, 1.1};
+        Vector2d<float> v2 = v;
 
-        Vector2d v3 = v + v2;
+        Vector2d<float> v3 = v + v2;
 
         BOOST_CHECK_CLOSE(v3.getX(), 3.0, 0.0001);
         BOOST_CHECK_CLOSE(v3.getY(), 2.2, 0.0001);
     }
 
     BOOST_AUTO_TEST_CASE(test_add_eq) {
-        Vector2d v{1.5, 1.1};
-        Vector2d v2 = v;
+        Vector2d<float> v{1.5, 1.1};
+        Vector2d<float> v2 = v;
 
         v2 += v;
 
@@ -59,18 +59,18 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
     }
 
     BOOST_AUTO_TEST_CASE(test_sub) {
-        Vector2d v{1.5, 1.1};
-        Vector2d v2 = v;
+        Vector2d<float> v{1.5, 1.1};
+        Vector2d<float> v2 = v;
 
-        Vector2d v3 = v2 - v;
+        Vector2d<float> v3 = v2 - v;
 
         BOOST_CHECK_CLOSE(v3.getX(), 0.0, 0.0001);
         BOOST_CHECK_CLOSE(v3.getY(), 0.0, 0.0001);
     }
 
     BOOST_AUTO_TEST_CASE(test_sub_eq) {
-        Vector2d v{1.5, 1.1};
-        Vector2d v2 = v;
+        Vector2d<float> v{1.5, 1.1};
+        Vector2d<float> v2 = v;
 
         v2 -= v;
 
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
     }
 
     BOOST_AUTO_TEST_CASE(test_mult) {
-        Vector2d v{1.5, 1.1};
+        Vector2d<float> v{1.5, 1.1};
 
         v = v * 2;
 
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
     }
 
     BOOST_AUTO_TEST_CASE(test_mult_eq) {
-        Vector2d v{1.5, 1.1};
+        Vector2d<float> v{1.5, 1.1};
 
         v *= 2;
 
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
     }
 
     BOOST_AUTO_TEST_CASE(test_div) {
-        Vector2d v{1.5, 1.1};
+        Vector2d<float> v{1.5, 1.1};
 
         v = v / 2;
 
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
     }
 
     BOOST_AUTO_TEST_CASE(test_div_eq) {
-        Vector2d v{1.5, 1.1};
+        Vector2d<float> v{1.5, 1.1};
 
         v = v / 2;
 
@@ -124,8 +124,8 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
          *
          *  = 2*1.5 + 4*1.1 = 7.4
          */
-        Vector2d x{2, 4};
-        Vector2d v{1.5, 1.1};
+        Vector2d<float> x{2, 4};
+        Vector2d<float> v{1.5, 1.1};
 
         float dot = x * v;
         float dot2 = x.dot(v);
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
         /*
          *  mag = root(x^2 + y^2)
          */
-        Vector2d x{3, 4};
+        Vector2d<float> x{3, 4};
 
         float mag = x.mag();
 
@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
          *  mag = root(x^2 + y^2)
          *  norm = x/mag
          */
-        Vector2d x{3, 4};
+        Vector2d<float> x{3, 4};
 
         x = x.norm();
 
@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
         /*
          *  square = x^2 + y^2
          */
-        Vector2d x{3.0, 4.0};
+        Vector2d<float> x{3.0, 4.0};
 
         float mag = x.square();
 
@@ -173,8 +173,8 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
         /*
          *  distance = root((x1-x2)^2 + (y1-y2)^2)
          */
-        Vector2d x{2, 4};
-        Vector2d y{5, 8};
+        Vector2d<float> x{2, 4};
+        Vector2d<float> y{5, 8};
 
         float mag = x.dist(y);
 
@@ -182,7 +182,7 @@ BOOST_AUTO_TEST_SUITE(TEST_SUITE_VECTOR2D)
     }
 
     BOOST_AUTO_TEST_CASE(test_to_string) {
-        Vector2d x{3, 4};
+        Vector2d<float> x{3, 4};
 
         std::string res = x.toString();
         std::string expected = "[3,4]";

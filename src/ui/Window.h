@@ -7,16 +7,29 @@
 
 
 #include <QWidget>
+#include <QMouseEvent>
+#include <src/Vector2d.h>
+#include <QPushButton>
 #include "Helper.h"
+#include "Widget.h"
 
 class Window : public QWidget {
     Q_OBJECT
 
 public:
-    Window();
+    const static int width = 400;
+    const static int scale = 2;
 
+    explicit Window(std::vector<Vector2d<float>>& vecs);
+    void mousePressEvent(QMouseEvent *event) override;
+
+private slots:
+    void handleButton();
 private:
     Helper helper;
+    std::vector<Vector2d<float>>& vecs;
+    Widget widget;
+    QPushButton *clear;
 };
 
 #endif //QUICKHULL_WINDOW_H

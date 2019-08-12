@@ -7,36 +7,45 @@
 
 #include <string>
 
-template<typename T>
+template<class T>
 class Vector2d {
-    using value_type = T;
 private:
     T x;
     T y;
 
 public:
-    Vector2d(T a, T b): x(a), y(b) {}
+    using value_type = T;
+
+    Vector2d(T a, T b) : x(a), y(b) {}
+
     ~Vector2d() = default;
 
     Vector2d(const Vector2d &vec); // Copy constructor
-    Vector2d&operator=(const Vector2d&vec) = default; // Copy assign
-    Vector2d operator+(const Vector2d&vec); // Add
-    Vector2d& operator+=(const Vector2d&vec); // Add assign
-    Vector2d operator-(const Vector2d&vec); // Add
-    Vector2d& operator-=(const Vector2d&vec); // Add assign
-    Vector2d operator*(T val); // Add
-    Vector2d& operator*=(T val); // Add assign
-    Vector2d operator/(T val); // Add
-    Vector2d& operator/=(T val); // Add assign
-    bool operator==(const Vector2d &vec);
-    T dot(const Vector2d &vec); // dot product
-    T operator*(const Vector2d &vec); // dot product
+    Vector2d<T> &operator=(const Vector2d<T> &vec) = default; // Copy assign
+    Vector2d<T> operator+(const Vector2d<T> &vec); // Add
+    Vector2d<T> &operator+=(const Vector2d<T> &vec); // Add assign
+    Vector2d<T> operator-(const Vector2d<T> &vec); // Add
+    Vector2d<T> &operator-=(const Vector2d<T> &vec); // Add assign
+    Vector2d<T> operator*(T val); // Add
+    Vector2d<T> &operator*=(T val); // Add assign
+    Vector2d<T> operator/(T val); // Add
+    Vector2d<T> &operator/=(T val); // Add assign
+    bool operator==(const Vector2d<T> &vec);
+
+    T dot(const Vector2d<T> &vec); // dot product
+    T operator*(const Vector2d<T> &vec); // dot product
     T mag();
-    Vector2d& norm();
+
+    Vector2d<T> &norm();
+
     T square();
+
     T dist(const Vector2d &o);
+
     T getX() const;
+
     T getY() const;
+
     void print(); // Show it
     std::string toString();
 };

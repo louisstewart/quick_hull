@@ -8,12 +8,13 @@
 
 #include <QBrush>
 #include <QWidget>
+#include "../Vector2d.h"
 
 class Helper {
 public:
     Helper();
 
-    void paint(QPainter *painter, QPaintEvent *event, int elapsed);
+    void paint(QPainter *painter, QPaintEvent *event, std::vector<Vector2d<float>> vecs);
 
 private:
     QBrush circleBrush;

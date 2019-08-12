@@ -8,16 +8,15 @@
 #include <QPainter>
 #include <QTimer>
 
-Widget::Widget(Helper *helper, QWidget *parent)
-        : QWidget(parent), helper(helper)
+Widget::Widget(Helper *helper, std::vector<Vector2d<float>>& vecs)
+        : helper(helper), vecs(vecs)
 {
     elapsed = 0;
-    setFixedSize(200, 200);
+    setFixedSize(800, 800);
 }
 
 void Widget::animate()
 {
-    elapsed = (elapsed + qobject_cast<QTimer*>(sender())->interval()) % 1000;
     update();
 }
 
@@ -26,6 +25,6 @@ void Widget::paintEvent(QPaintEvent *event)
     QPainter painter;
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    helper->paint(&painter, event, elapsed);
+    helper->paint(&painter, event, vecs);
     painter.end();
 }

@@ -12,7 +12,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 
-set (DEPS src/Vector2d.inl src/Vector2d.h src/quickhull.inl src/quickhull.h src/Line2d.inl src/Line2d.h)
+set (DEPS src/Vector2d.inl src/Vector2d.h src/quickhull.h src/Line2d.inl src/Line2d.h)
 set(UIDEPS src/ui/Window.cpp src/ui/Helper.cpp src/ui/Helper.h src/ui/Widget.cpp src/ui/Widget.h)
 
 include_directories(${PROJECT_SOURCE_DIR})
