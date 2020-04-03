@@ -13,14 +13,14 @@ Helper::Helper() {
     background = QBrush(QColor(255, 255, 255));
 }
 
-void Helper::paint(QPainter *painter, QPaintEvent *event, std::vector<Vector2d<float>> vecs) {
+void Helper::paint(QPainter *painter, QPaintEvent *event, const std::vector<Vector2d<float>>& vecs) {
     painter->fillRect(event->rect(), background);
     painter->translate(400,400);
 
     painter->save();
     // Do paint loop for all vector2d
     painter->setBrush(circleBrush);
-    for(const auto vec: vecs) {
+    for(const auto& vec: vecs) {
         painter->drawEllipse(QPointF(vec.getX(), vec.getY()), 5, 5);
     }
 

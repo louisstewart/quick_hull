@@ -14,7 +14,7 @@ class Helper {
 public:
     Helper();
 
-    void paint(QPainter *painter, QPaintEvent *event, std::vector<Vector2d<float>> vecs);
+    void paint(QPainter *painter, QPaintEvent *event, const std::vector<Vector2d<float>>& vecs);
 
 private:
     QBrush circleBrush;
