@@ -2,6 +2,7 @@
 // Created by Louis William Henry Renton Stewart on 2019-08-05.
 //
 #include <vector>
+#include <cassert>
 #include "Vector2d.h"
 #include "quickhull.h"
 
